@@ -5,6 +5,7 @@ const convert = require('koa-convert')
 const koaStatic = require('koa-static')
 const bodyParser = require('koa-bodyparser')
 const Router = require('koa-router')
+const cors = require('koa-cors')
 const redis = require('koa-redis')
 const session = require('koa-generic-session')
 // const cors = require('koa-cors')
@@ -48,6 +49,15 @@ app.use(bodyParser())
 // 配置静态资源加载中间件
 app.use(convert(koaStatic(config.staticDirection, {
   maxage: 60 * 60 * 24 * 365
+})))
+
+// 配置跨域中间件
+app.use(convert(cors({
+  // 7 days
+  maxAge: 7 * 24 * 60 * 60,
+  credentials: true,
+  methods: 'GET, HEAD, OPTIONS, POST, PUT, PATCH, DELETE',
+  headers: 'Content-Type, Accept'
 })))
 
 // 配置路由中间件

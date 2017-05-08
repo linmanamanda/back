@@ -6,8 +6,8 @@ const koaStatic = require('koa-static')
 const bodyParser = require('koa-bodyparser')
 const Router = require('koa-router')
 const cors = require('koa-cors')
-const redis = require('koa-redis')
-const session = require('koa-generic-session')
+// const redis = require('koa-redis')
+// const session = require('koa-generic-session')
 // const cors = require('koa-cors')
 // const session = require('koa-session-mininal')
 // const mysqlStore = require('koa-mysql-session')
@@ -15,6 +15,7 @@ const session = require('koa-generic-session')
 
 
 const app = new Koa()
+
 
 // app.use(async (ctx, next) => {
 //   ctx.config = config
@@ -61,7 +62,6 @@ app.use(convert(cors({
 })))
 
 // 配置路由中间件
-
 const router = new Router()
 const appRouter = require('./controller/index')
 

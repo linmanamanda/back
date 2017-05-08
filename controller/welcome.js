@@ -1,3 +1,13 @@
+const middleware = require('../middleware')
+
+module.exports.init = (router) => {
+  router.get('/welcomes', middleware['verify-jwt'] ,getWelcomeInfo)
+  router.post('/welcomes', postWelcomeInfo)
+  router.put('/welcomes', putWelcomeInfo)
+  router.patch('/welcomes', patchWelcomeInfo)
+  router.delete('/welcomes', deleteWelcomeInfo)
+}
+
 const getWelcomeInfo = async (ctx) => {
   ctx.body = {
     info: '获取welcome信息'
@@ -34,10 +44,3 @@ const deleteWelcomeInfo = async (ctx) => {
 }
 
 
-module.exports.init = (router) => {
-  router.get('/welcome', getWelcomeInfo)
-  router.post('/welcome', postWelcomeInfo)
-  router.put('/welcome', putWelcomeInfo)
-  router.patch('/welcome', patchWelcomeInfo)
-  router.delete('/welcome', deleteWelcomeInfo)
-}

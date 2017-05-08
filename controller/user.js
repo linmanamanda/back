@@ -1,5 +1,5 @@
-const middlewares = require('../middleware/index')
-const userService = require('../service/user')
+// const middlewares = require('../middleware/index')
+// const userService = require('../service/user')
 
 
 module.exports.init = (router) => {

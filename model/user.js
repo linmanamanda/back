@@ -1,41 +1,45 @@
-const db = require('./../util/db')
-const type = require('./../util/type')
-
-/**
- * 获取用户数据
- * @return {object}       mysql执行结果
- */
-let getUsers = async () => {
-  let result = await db.selectAll('user')
-  return result
-}
-
-
-/**
- * 插入用户数据
- * @param  {object} model 用户数据模型
- * @return {object}       mysql执行结果
- */
-let createUser = async (model) => {
-  let result = await db.insertData('user', model)
-  return result
-}
-
-let getExistOne = async (options) => {
-  let _sql = `
-    SELECT * FROM user
-    WHERE email = ${options.email} OR name = ${options.name}
-    LIMIT 1 
-  `
-  let result = await db.query(_sql)
-
-  return result
-}
-
-
+const db = require('./../utils/db')
+const types = require('./../utils/types')
 
 module.exports = {
-  getUsers,
-  createUser,
-  getExistOne
+  /**
+   * 获取一个已存在用户的信息
+   * @param  {object} options [description]
+   * @return {object | null}         [description]
+   */
+  async getExistOne(options) {
+    let SQL = `
+      SELECT * FROM user WHERE email = '${options.email}' LIMIT 1
+    ` 
+    let result = await db.query(SQL)
+
+    if (types.isArray(result) && result.length > 0) {
+      console.log(result)
+
+      result = result[0]
+    } else {
+      result = null
+    }
+
+    return result
+  },
+
+  /**
+   * 通过邮箱和密码获取用户信息
+   * @param  {object} options [description]
+   * @return {object | null}         [description]
+   */
+  async getUserByEmailAndPassword(options) {
+    let SQL = `
+      SELECT * FROM user WHERE email = '${options.email}' AND password = '${options.password}' LIMIT 1
+    `
+    let result = await db.query(SQL)
+
+    if (types.isArray(result) && result.length > 0) {
+      result = result[0]
+    } else {
+      result = null
+    }
+    return result
+  }
 }

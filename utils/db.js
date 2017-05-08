@@ -11,8 +11,8 @@ const pool = mysql.createPool({
 
 /**
  * Promise封装mysql操作语句
- * @param  {[string]} sql  [mysql操作语句]
- * @return {[promise]}     [具有sql操作结果的promise对象]
+ * @param  {string} sql  [mysql操作语句]
+ * @return {promise}     [具有sql操作结果的promise对象]
  */
 let query = (sql) => {
   return new Promise((resolve, reject) => {

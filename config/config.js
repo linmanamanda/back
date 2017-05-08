@@ -16,14 +16,12 @@ const config = {
     PORT: 3306,
     USERNAME: 'root',
     PASSWORD: 'xlqhlm1314',
-    DATABASE: 'date_server'
+    DATABASE: 'graduation'
   },
 
-  // redis数据库配置
-  // redisConfig: {
-    // HOST: 
-  // }
-
+  jwt: {
+    secret: 'graduation'
+  }
 }
 
 module.exports = config

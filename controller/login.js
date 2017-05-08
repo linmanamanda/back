@@ -14,41 +14,47 @@ const login = async (ctx, next) => {
 
   let authorization = ctx.request.header.authorization
 
-  let data = await model.getUserByEmailAndPassword(body)
+  let user = await model.getUserByEmailAndPassword(body)
   let token = ''
   let decoded = null
 
-  if (data) {
+  if (user) {
     let profile = {
-      email: data.email,
-      username:  data.username,
-      status: data.status,
-      authority: data.authority
+      email: user.email,
+      username: user.username,
+      status: user.status,
+      authority: user.authority
     }
 
-    token = jwt.sign(profile, config.jwt.secret, {
-        expiresIn: 60
-    })
-    
+    try {
+      token = jwt.sign(profile, config.jwt.secret, {
+          expiresIn: '1h'
+      })
 
-    ctx.body = {
-      code: 0,
-      data: {
-        token
+      ctx.body = {
+        code: 0,
+        data: {
+          token,
+          username: user.username,
+          status: user.status,
+          authority: user.authority
+        }
+      }
+    } catch (error) {
+      ctx.body = {
+        code: 1,
+        error: {
+          message: 'generating jwt failed!'
+        }
       }
     }
+
   } else {
     ctx.body = {
-      code: 1
+      code: 1,
+      error: {
+        message: 'user not exists!'
+      }
     }
   } 
-
-
-
-  // try {
-  //   decoded = jwt.verify(token, config.jwt.secret)
-  // } catch (error) {
-  //   decoded = error    
-  // }
-
 }

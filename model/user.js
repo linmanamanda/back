@@ -80,7 +80,7 @@ module.exports = {
     }
 
 
-    let rows = options.pageSize
+    let rows = options.pageSize 
     let offset = (options.currentPage - 1) * rows
 
     let limitSQL = `LIMIT ${offset}, ${rows}`
@@ -108,4 +108,25 @@ module.exports = {
     }
   },
 
+  async updateUser(options) {
+    let SQL = `
+      UPDATE user 
+      SET username = '${options.username}', status = ${options.status}, authority = ${options.authority} 
+      WHERE email = '${options.email}';
+    `
+
+    let result = await db.query(SQL)
+    return result
+  },
+
+  async deleteUser(options) {
+    let SQL = `
+      DELETE FROM user WHERE email = '${options.email}';
+    `
+
+    let result = await db.query(SQL)
+    return result
+  }
 }
+
+

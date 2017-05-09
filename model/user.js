@@ -3,24 +3,21 @@ const types = require('./../utils/types')
 
 module.exports = {
   /**
-   * 获取一个已存在用户的信息
+   * 通过邮箱获取指定用户信息
    * @param  {object} options [description]
    * @return {object | null}         [description]
    */
-  async getExistOne(options) {
+  async getUserByEmail(options) {
     let SQL = `
       SELECT * FROM user WHERE email = '${options.email}' LIMIT 1
     ` 
     let result = await db.query(SQL)
 
     if (types.isArray(result) && result.length > 0) {
-      console.log(result)
-
       result = result[0]
     } else {
       result = null
     }
-
     return result
   },
 
@@ -98,9 +95,7 @@ module.exports = {
       ${whereSQL}
     `
 
-
-    let users = await db.query(usersSQL)
-    let count = await db.query(countSQL)
+    let [users, count] = await Promise.all([db.query(usersSQL), db.query(countSQL)])
 
     return {
       users,

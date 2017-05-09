@@ -2,11 +2,8 @@ const config = require('../config/config')
 const jwt = require('jsonwebtoken')
 
 module.exports = async (ctx, next) => {
-  const authorization =  ctx.request.header.authorization
-
-  // jwt token
+  let authorization =  ctx.request.header.authorization
   let token = ''
-  // jwt payload
   let payload = null
 
   if (authorization) {
@@ -28,7 +25,7 @@ module.exports = async (ctx, next) => {
     ctx.body = {
       code: 1,
       error: {
-        message: 'jwt volid'
+        message: 'jwt为空'
       }
     }
   }

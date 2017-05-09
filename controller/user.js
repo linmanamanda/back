@@ -1,4 +1,5 @@
 const model = require('./../model/user')
+const verify = require('./../middleware/verify-jwt')
 
 
 module.exports.init = (router) => {
@@ -26,7 +27,9 @@ const getUsers = async (ctx, next) => {
   } catch (error) {
     ctx.body = {
       code: 1,
-      error
+      error: {
+        message: error.message
+      }
     }
   }
 }
@@ -38,21 +41,43 @@ const getUsers = async (ctx, next) => {
  * @return {[type]}        [description]
  */
 const updateUser = async (ctx, next) => {
-  let body = ctx.request.body
-  let result = await model.updateUser(body)
+  try {
+    let body = ctx.request.body
+    let result = await model.updateUser(body)
 
-  ctx.body = {
-    code: 0,
-    data: result
+    ctx.body = {
+      code: 0
+    }
+  } catch (error) {
+    ctx.body = {
+      code: 1,
+      error: {
+        message: error.message
+      }
+    }
   }
 }
 
+/**
+ * 根据邮箱删除指定用户信息
+ * @param  {[type]}   ctx  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 const deleteUser = async (ctx, next) => {
-  let body = ctx.request.body
-  let result = await model.deleteUser(body)
+  try {
+    let body = ctx.request.body
+    let result = await model.deleteUser(body)
 
-  ctx.body = {
-    code: 0,
-    data: result
+    ctx.body = {
+      code: 0,
+    }
+  } catch (error) {
+    ctx.body = {
+      code: 1,
+      error: {
+        message: error.message
+      }
+    }
   }
 }

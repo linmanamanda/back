@@ -52,83 +52,60 @@ module.exports = {
   //     createdAt: '2017-05-06 01:00',
 
   async getUsers(options) {
+    let whereSQLArray = []
     let whereSQL = ''
-    let whereQueryArray = []
-    
-    if (options) {
-      let likeQuery = options.like
-      let equalQuery = options.equal
 
-      if (likeQuery) {
-        for (let [field, query] in Object.entries(likeQuery)) {
-          if (query) {
-            whereQueryArray.push(`${field} like '%${query}%'`)
-          }
-        }
+    if (options.email) {
+      whereSQLArray.push(`email like '%${options.email}%'`)
+    }
+
+    if (options.username) {
+      whereSQLArray.push(`username like '%${options.username}%'`)
+    }
+
+    if (options.status) {
+      whereSQLArray.push(`status = ${options.status}`)
+    }
+
+    if (options.authority) {
+      whereSQLArray.push(`authority = ${options.authority}`)
+    }
+
+    if (whereSQLArray.length) {
+      whereSQL = 'WHERE '
+      for (var i = 0; i < whereSQLArray.length - 1; i++) {
+        whereSQL += whereSQLArray[i] + ' AND '
       }
-
-      if (equalQuery) {
-        for (let [field, query] in Object.entries(equalQuery)) {
-          if (query) {
-            whereQueryArray.push(`${field} = ${query}`)
-          }
-        }
-      }
-
-
-
-      if (whereQueryArray.length) {
-        whereSQL = `WHERE`
-        for (var i = 0; i < whereQueryArray.length - 1; i++) {
-          whereSQL += whereQueryArray[i] + ' AND '
-        }
-        whereSQL += whereQueryArray[i]
-      }
+      whereSQL += whereSQLArray[i]
     }
 
 
+    let rows = options.pageSize
+    let offset = (options.currentPage - 1) * rows
+
+    let limitSQL = `LIMIT ${offset}, ${rows}`
+
+    let usersSQL = `
+      SELECT 
+        id, email, username, authority, status, updated_at AS updatedAt, created_at AS createdAt 
+      FROM user
+      ${whereSQL}
+      ${limitSQL};
+    ` 
+    
+    let countSQL = `
+      SELECT COUNT(*) AS total FROM user
+      ${whereSQL}
+    `
 
 
+    let users = await db.query(usersSQL)
+    let count = await db.query(countSQL)
 
-    // if (options.email) {
-    //   whereSQL.push(`email like %${options.email}%`)
-    // }
-
-    // if (options.username) {
-    //   whereSQL.push(`username like %${options.username}%`)
-    // }
-
-    // if (options.status) {
-    //   whereSQL.push(`status = ${options.status}`)
-    // }
-
-    // if (options.authority) {
-    //   whereSQL.push(`authority = ${options.authority}`)
-    // }
-
-
-
-
-
-    // let usersSQL = `
-    //   SELECT 
-    //     id, email, username, authority, status, updated_at AS updatedAt, created_at AS createdAt 
-    //   FROM user
-    //   LIMIT ${options.offset}, ${options.rows};
-    // `
-    // let countSQL = `
-    //   SELECT COUNT(*) AS total FROM user
-    // `
-
-
-    // let users = await db.query(usersSQL)
-    // let count = await db.query(countSQL)
-
-    // return {
-    //   users,
-    //   total: count[0].total
-    // }
-    return whereSQL
+    return {
+      users,
+      total: count[0].total
+    }
   },
 
 }

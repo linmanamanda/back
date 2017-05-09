@@ -17,10 +17,9 @@ const getUsers = async (ctx, next) => {
 
   let result = await model.getUsers(query)
 
-  // ctx.body = {
-  //   code: 0,
-  //   data: result 
-  // }
-  ctx.body = result
+  ctx.body = {
+    code: 0,
+    data: result 
+  }
 }
 

@@ -1,13 +1,13 @@
 # 用户信息表
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,             # 用户ID
-  `email` varchar(255) NOT NULL UNIQUE,             # 邮箱地址
-  `password` varchar(255) NOT NULL,                 # 密码
-  `username` varchar(255) DEFAULT '',               # 用户名
-  `status` tinyint(4) DEFAULT 0,                    # 用户状态，其中0为正常，1为封禁
-  `authority` tinyint(4) DEFAULT 0,                 # 权限级别，其中0为普通用户，1为管理员，2为超级管理员
-  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP, # 创建时间
-  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP, # 更新时间
+  `id` int(11) NOT NULL AUTO_INCREMENT,                                         # 用户ID
+  `email` varchar(255) NOT NULL UNIQUE,                                         # 邮箱地址
+  `password` varchar(255) NOT NULL,                                             # 密码
+  `username` varchar(255) DEFAULT '',                                           # 用户名
+  `status` tinyint(4) DEFAULT 0,                                                # 用户状态，其中0为正常，1为封禁
+  `authority` tinyint(4) DEFAULT 0,                                             # 权限级别，其中0为普通用户，1为管理员，2为超级管理员
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,                             # 创建时间
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, # 更新时间
   UNIQUE(`email`),
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -22,7 +22,7 @@ INSERT INTO `user` SET email = 'khyyh@snh48.com', password = 'khyyh', username =
 INSERT INTO `user` SET email = 'khgay@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay1@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay2@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
-INSERT INTO `user` SET email = 'khgay3@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
+INSERT INTO `user` SET email = 'khgay3@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1; 
 INSERT INTO `user` SET email = 'khgay4@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay5@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay6@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;

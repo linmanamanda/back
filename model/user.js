@@ -40,14 +40,6 @@ module.exports = {
     return result
   },
 
-  //     id: 6,
-  //     email: 'zengyanfen@snh48.com',
-  //     username: 'zengyanfen',
-  //     authority: '0',
-  //     status: '0',
-  //     updatedAt: '2017-05-06 01:00',
-  //     createdAt: '2017-05-06 01:00',
-
   async getUsers(options) {
     let whereSQLArray = []
     let whereSQL = ''
@@ -103,6 +95,11 @@ module.exports = {
     }
   },
 
+  /**
+   * 根据邮箱信息修改指定用户的指定字段信息
+   * @param  {[type]} options [description]
+   * @return {[type]}         [description]
+   */
   async updateUser(options) {
     let SQL = `
       UPDATE user 
@@ -114,6 +111,11 @@ module.exports = {
     return result
   },
 
+  /**
+   * 根据邮箱信息修改指定用户信息
+   * @param  {[type]} options [description]
+   * @return {[type]}         [description]
+   */
   async deleteUser(options) {
     let SQL = `
       DELETE FROM user WHERE email = '${options.email}';

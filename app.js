@@ -58,7 +58,7 @@ app.use(convert(cors({
   maxAge: 7 * 24 * 60 * 60,
   credentials: true,
   methods: 'GET, HEAD, OPTIONS, POST, PUT, PATCH, DELETE',
-  headers: 'Content-Type, Accept'
+  headers: 'Content-Type, Accept, Authorization'
 })))
 
 // 配置路由中间件

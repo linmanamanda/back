@@ -10,11 +10,7 @@ module.exports.init = (router) => {
 const login = async (ctx, next) => {
   try {
     let body = ctx.request.body
-    let header = ctx.request.header
-    let authorization = ctx.request.header.authorization
     let user = await model.getUserByEmail(body)
-    let token = ''
-    let decoded = null
 
     if (user) {   
 
@@ -26,7 +22,7 @@ const login = async (ctx, next) => {
           authority: user.authority
         }
 
-        token = jwt.sign(profile, config.jwt.secret, {
+        let token = jwt.sign(profile, config.jwt.secret, {
             expiresIn: '1h'
         })
 

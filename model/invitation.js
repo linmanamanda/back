@@ -93,10 +93,6 @@ module.exports = {
       ${limitSQL};
     `
 
-    // if (whereSQL) {
-    //   whereSQL = 'WHERE' + whereSQL
-    // }
-
     let countSQL = `
       SELECT 
         COUNT(*) AS total 
@@ -111,7 +107,39 @@ module.exports = {
       invitations,
       total: count[0].total
     }  
-    // return invitationAndCountSQL
+  },
+
+  /**
+   * 根据相约信息id和用户邮箱信息修改指定字段信息
+   * @param  {[type]} options [description]
+   * @return {[type]}         [description]
+   */
+  async updateInvitation(options) {
+    let time = moment(options.time).utcOffset(-8).format('YYYY-MM-DD HH:mm:ss')
+    let SQL = `
+      UPDATE 
+        invitation
+      SET
+        title = '${options.title}',
+        time = '${time}',
+        location = '${options.location}',
+        status = ${options.status},
+        content = '${options.content}'
+      WHERE
+        id = ${options.id}; 
+    `
+
+    let result = await db.query(SQL)
+    return result
+  },
+
+  async deleteInvitation(options) {
+    let SQL = `
+      DELETE FROM user WHERE id = '${options.id}';
+    `
+
+    let result = await db.query(SQL)
+    return result
   }
 }
 

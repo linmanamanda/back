@@ -19,6 +19,8 @@ INSERT INTO `user` SET email = 'huangtingting@snh48.com', password = 'huangtingt
 INSERT INTO `user` SET email = 'khyyh@snh48.com', password = 'khyyh', username = '卡黄应援会', authority = 1;
 
 
+INSERT INTO `user` SET email = 'ptyh@snh48.com', password = 'ptyhptyh', username = '普通用户', authority = 0, status = 1;
+INSERT INTO `user` SET email = 'hfptyh@snh48.com', password = 'ptyhptyh', username = '回复普通用户', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay1@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;
 INSERT INTO `user` SET email = 'khgay2@snh48.com', password = 'khgay', username = '卡黄gay', authority = 0, status = 1;

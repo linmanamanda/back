@@ -44,6 +44,10 @@ module.exports = {
     let whereSQLArray = []
     let whereSQL = ''
 
+    if (options.id) {
+      whereSQLArray.push(`id = ${options.id}`)
+    }
+
     if (options.email) {
       whereSQLArray.push(`email like '%${options.email}%'`)
     }
@@ -96,15 +100,20 @@ module.exports = {
   },
 
   /**
-   * 根据邮箱信息修改指定用户的指定字段信息
+   * 根据ID修改指定用户的指定字段信息
    * @param  {[type]} options [description]
    * @return {[type]}         [description]
    */
   async updateUser(options) {
     let SQL = `
-      UPDATE user 
-      SET username = '${options.username}', status = ${options.status}, authority = ${options.authority} 
-      WHERE email = '${options.email}';
+      UPDATE 
+        user 
+      SET 
+        username = '${options.username}', 
+        status = ${options.status}, 
+        authority = ${options.authority} 
+      WHERE 
+        id = '${options.id}';
     `
 
     let result = await db.query(SQL)
@@ -118,7 +127,10 @@ module.exports = {
    */
   async deleteUser(options) {
     let SQL = `
-      DELETE FROM user WHERE email = '${options.email}';
+      DELETE FROM 
+        user 
+      WHERE 
+        email = '${options.email}';
     `
 
     let result = await db.query(SQL)

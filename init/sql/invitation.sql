@@ -15,12 +15,12 @@ CREATE TABLE IF NOT EXISTS `invitation` (
 
 # 插入相约信息
 INSERT INTO `invitation` SET 
-  title = '期末复习约自习小伙伴',
-  content = '宿舍在二教附近，求约小伙伴一起在老图自习',
-  time = '2017-05-10 08:00:00',
+  title = '普通用户发布的相约信息',
+  content = '普通用户发布的相约信息1，相约时间为2017-05-14 22:25:00， 相约地点为重邮老图书馆',
+  time = '2017-05-14 22:25:00',
   location = '重邮老图书馆',
   status = 0,
-  created_by = 1;
+  created_by = 36;
 
 INSERT INTO `invitation` SET 
   title = '英语口语角约对练小伙伴',
@@ -28,7 +28,7 @@ INSERT INTO `invitation` SET
   time = '2017-05-10 20:00:00',
   location = '重邮春华秋实广场',
   status = 0,
-  created_by = 2;
+  created_by = 3;
 
 INSERT INTO `invitation` SET 
   title = '老操场夜跑组队',
@@ -36,7 +36,7 @@ INSERT INTO `invitation` SET
   time = '2017-05-12 20:00:00',
   location = '重邮老操场',
   status = 0,
-  created_by = 1;
+  created_by = 31;
 
 INSERT INTO `invitation` SET 
   title = '考研求研友',
@@ -44,7 +44,7 @@ INSERT INTO `invitation` SET
   time = '2017-05-13 10:00:00',
   location = '重邮数图',
   status = 0,
-  created_by = 1;
+  created_by = 31;
 
 INSERT INTO `invitation` SET 
   title = '五一仙女山游玩，来组队',
@@ -52,7 +52,7 @@ INSERT INTO `invitation` SET
   time = '2017-05-01 12:00:00',
   location = '重庆仙女山',
   status = 0,
-  created_by = 1;
+  created_by = 31;
 
 INSERT INTO `invitation` SET 
   title = '江北机场拼车回学校',
@@ -60,7 +60,7 @@ INSERT INTO `invitation` SET
   time = '2017-05-03 14:30:00',
   location = '重庆江北机场',
   status = 0,
-  created_by = 1;
+  created_by = 31;
 
 
 

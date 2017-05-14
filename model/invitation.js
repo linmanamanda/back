@@ -26,13 +26,13 @@ module.exports = {
 
     // 相约信息的开始相约时间
     if (options.begintime) {
-      let begintime = moment(options.begintime).utcOffset(-8).format('YYYY-MM-DD HH:mm:ss')
+      let begintime = moment(options.begintime).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
       invitationWhereSQLArray.push(`time >= '${begintime}'`)
     } 
 
     // 相约信息的结束相约时间
     if (options.endtime) {
-      let endtime = moment(options.begintime).utcOffset(-8).format('YYYY-MM-DD HH:mm:ss')
+      let endtime = moment(options.begintime).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
       invitationWhereSQLArray.push(`time <= '${endtime}'`)
     }
 
@@ -115,7 +115,7 @@ module.exports = {
    * @return {[type]}         [description]
    */
   async updateInvitation(options) {
-    let time = moment(options.time).utcOffset(-8).format('YYYY-MM-DD HH:mm:ss')
+    let time = moment(options.time).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
     let SQL = `
       UPDATE 
         invitation
@@ -135,7 +135,7 @@ module.exports = {
 
   async deleteInvitation(options) {
     let SQL = `
-      DELETE FROM user WHERE id = '${options.id}';
+      DELETE FROM invitation WHERE id = '${options.id}';
     `
 
     let result = await db.query(SQL)

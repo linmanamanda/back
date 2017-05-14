@@ -45,7 +45,7 @@ const updateUser = async (ctx, next) => {
     let authority = ctx.state.authority
     let body = ctx.request.body
     let user = await model.getUserByEmail(body)
-    if (authority > user.authority) { // 如果当前用户权限等级大于删除的用户权限等级，则执行修改操作
+    if (authority > user.authority) { // 如果当前用户权限等级大于修改的用户权限等级，则执行修改操作
       let result = await model.updateUser(body)
       ctx.body = {
         code: 0

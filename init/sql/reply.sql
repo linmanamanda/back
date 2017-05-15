@@ -17,27 +17,14 @@ CREATE TABLE IF NOT EXISTS `reply` (
 
 # 插入评论信息
 INSERT INTO `reply` SET
-  invitation_id = 20,
-  content = '阿阿阿，要期末了，一起自习吧',
+  invitation_id = 21,
+  content = '回复普通的用户直接回复相约信息的第一条信息',
   type = 0,
-  from_id = 5;
+  from_id = 37;
 
 INSERT INTO `reply` SET
-  invitation_id = 20,
-  content = '一起一起！我现在就在老图二楼，来约！',
+  invitation_id = 21,
+  content = '回复普通的用户直接回复相约信息的第二条信息',
   type = 0,
-  from_id = 8;
-
-INSERT INTO `reply` SET
-  invitation_id = 20,
-  content = '已经在老图三楼坐等！',
-  type = 0,
-  from_id = 7;
-
-INSERT INTO `reply` SET
-  invitation_id = 20,
-  content = '好巧！',
-  type = 1,
-  from_id = 7,
-  to_id = 6;
+  from_id = 37;
 

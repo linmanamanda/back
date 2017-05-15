@@ -14,30 +14,30 @@ module.exports = {
     let invitationAndCountSQL = ''
     let countWhereSQL = ''
 
-    // 相约信息的标题
-    if (options.title) {
+    if (options.id) { // 相约信息ID
+      invitationWhereSQLArray.push(`id = ${options.id}`)
+    }
+
+    if (options.title) { // 相约信息的标题
       invitationWhereSQLArray.push(`title LIKE '%${options.title}%'`)
     }
 
-    // 相约信息的相约地点
-    if (options.location) {
+   
+    if (options.location) {  // 相约信息的相约地点
       invitationWhereSQLArray.push(`location LIKE '%${options.location}%'`)
     }
 
-    // 相约信息的开始相约时间
-    if (options.begintime) {
+    if (options.begintime) { // 相约信息的开始相约时间
       let begintime = moment(options.begintime).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
       invitationWhereSQLArray.push(`time >= '${begintime}'`)
     } 
 
-    // 相约信息的结束相约时间
-    if (options.endtime) {
+    if (options.endtime) { // 相约信息的结束相约时间
       let endtime = moment(options.begintime).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
       invitationWhereSQLArray.push(`time <= '${endtime}'`)
     }
 
-    // 相约信息的状态
-    if (options.status) {
+    if (options.status) { // 相约信息的状态
       invitationWhereSQLArray.push(`status = ${options.status}`)
     }
 
@@ -48,9 +48,8 @@ module.exports = {
       invitationWhereSQL += 'invitation.' + invitationWhereSQLArray[i]
     }
 
-
-    // 相约信息的发布人
-    if (options.createdBy) {
+    
+    if (options.createdBy) { // 相约信息的发布人
       userWhereSQLArray.push(`email LIKE '%${options.createdBy}%'`)
     }
 

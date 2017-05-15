@@ -12,23 +12,23 @@ CREATE TABLE IF NOT EXISTS `report_user` (
 
 # 插入举报用户信息
 INSERT INTO `report_user` SET
-  user_id = 5,
-  reason =  '发布色情淫秽信息',
+  user_id = 36,
+  reason =  '举报普通用户发布色情淫秽信息',
   status = 0;
 
 INSERT INTO `report_user` SET
-  user_id = 5,
-  reason =  '发布广告',
+  user_id = 36,
+  reason =  '举报普通用户发布广告',
   status = 0;
 
 INSERT INTO `report_user` SET
-  user_id = 5,
-  reason =  '发布不实相约信息',
+  user_id = 36,
+  reason =  '举报普通用户发布不实相约信息',
   status = 0;
 
 INSERT INTO `report_user` SET
-  user_id = 5,
-  reason =  '发布无关信息',
+  user_id = 36,
+  reason =  '举报普通用户发布无关信息',
   status = 1;
 
 
@@ -44,6 +44,21 @@ CREATE TABLE IF NOT EXISTS `report_invitation` (
   CONSTRAINT FK_report_invitation_id FOREIGN KEY(invitation_id) REFERENCES invitation(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `report_invitation` SET
+  invitation_id = 21,
+  reason =  '举报相约信息中包含淫秽色情信息',
+  status = 0;
+
+INSERT INTO `report_invitation` SET
+  invitation_id = 21,
+  reason =  '举报相约信息中包含广告',
+  status = 0;
+
+INSERT INTO `report_invitation` SET
+  invitation_id = 21,
+  reason =  '举报相约信息中包含不实相约信息',
+  status = 0;
+
 # 举报评论信息表
 CREATE TABLE IF NOT EXISTS `report_reply` (
   `id` int(11) NOT NULL AUTO_INCREMENT,                                         # 举报信息ID
@@ -55,5 +70,20 @@ CREATE TABLE IF NOT EXISTS `report_reply` (
   PRIMARY KEY(`id`),
   CONSTRAINT FK_report_reply_id FOREIGN KEY(reply_id) REFERENCES reply(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `report_reply` SET
+  reply_id = 1,
+  reason =  '评论相约信息中包含淫秽色情信息',
+  status = 0;
+
+INSERT INTO `report_reply` SET
+  reply_id = 1,
+  reason =  '评论相约信息中包含广告',
+  status = 0;
+
+INSERT INTO `report_reply` SET
+  reply_id = 1,
+  reason =  '评论相约信息中包含不实相约信息',
+  status = 0;
 
 

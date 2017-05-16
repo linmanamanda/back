@@ -3,6 +3,20 @@ const types = require('./../utils/types')
 const moment = require('moment')
 
 module.exports = {
+  async setInvitationsExpire() {
+    let SQL = `
+      UPDATE 
+        invitation
+      SET
+        status = 2
+      WHERE
+        status = 0 AND time < now()
+    `
+    let result = await db.query(SQL)
+    return result
+  },
+
+
   async getInvitations(options) {
     let whereSQLArray = []
     let userSQLArray = []
@@ -33,7 +47,7 @@ module.exports = {
     } 
 
     if (options.endtime) { // 相约信息的结束相约时间
-      let endtime = moment(options.begintime).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
+      let endtime = moment(options.endtime).utcOffset(+8).format('YYYY-MM-DD HH:mm:ss')
       invitationWhereSQLArray.push(`time <= '${endtime}'`)
     }
 

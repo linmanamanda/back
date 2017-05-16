@@ -2,9 +2,9 @@ const model = require('./../model/reply')
 const verify = require('./../middleware/verify-jwt')
 
 module.exports.init = (router) => {
-  router.get('/replys', getReplys)
-  router.patch('/reply', updateReply)
-  router.delete('/reply', deleteReply)
+  router.get('/replys', verify, getReplys)
+  router.patch('/reply', verify, updateReply)
+  router.delete('/reply', verify, deleteReply)
 }
 
 /**

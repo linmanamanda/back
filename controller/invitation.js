@@ -1,9 +1,24 @@
 const model = require('./../model/invitation')
+const verify = require('./../middleware/verify-jwt')
 
 module.exports.init = (router) => {
-  router.get('/invitations', getInvitations)
-  router.patch('/invitation', updateInvitation)
-  router.delete('/invitation', deleteInvitation)
+  router.get('/invitations', verify, setInvitationsExpire, getInvitations)
+  router.patch('/invitation', verify, updateInvitation)
+  router.delete('/invitation', verify, deleteInvitation)
+}
+
+const setInvitationsExpire = async (ctx, next) => {
+  try {
+    let result = await model.setInvitationsExpire()
+    await next()
+  } catch (error) {
+    ctx.body = {
+      code: 1,
+      error: {
+        message: error.message
+      }
+    }
+  }
 }
 
 const getInvitations = async (ctx, next) => {

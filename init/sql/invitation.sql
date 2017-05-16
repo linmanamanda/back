@@ -23,44 +23,64 @@ INSERT INTO `invitation` SET
   created_by = 36;
 
 INSERT INTO `invitation` SET 
-  title = '英语口语角约对练小伙伴',
-  content = '英语口语角在春华秋实广场，求约小伙伴一起对练',
-  time = '2017-05-10 20:00:00',
-  location = '重邮春华秋实广场',
+  title = '普通用户发布的相约信息2',
+  content = '普通用户发布的相约信息2，相约时间为2017-05-16 10:00:00， 相约地点为重邮雨红莲， 状态为等待相约',
+  time = '2017-05-16 10:00:00',
+  location = '重邮雨红莲',
   status = 0,
-  created_by = 3;
+  created_by = 36;
 
 INSERT INTO `invitation` SET 
-  title = '老操场夜跑组队',
-  content = '晚上八点左右老操场夜跑组队',
-  time = '2017-05-12 20:00:00',
-  location = '重邮老操场',
+  title = '普通用户发布的相约信息3',
+  content = '普通用户发布的相约信息3，相约时间为2017-05-17 12:30:00， 相约地点为新校门， 状态为等待相约',
+  time = '2017-05-17 12:30:00',
+  location = '新校门',
   status = 0,
-  created_by = 31;
+  created_by = 36;
 
 INSERT INTO `invitation` SET 
-  title = '考研求研友',
-  content = '考研求研友，在数图自习',
-  time = '2017-05-13 10:00:00',
-  location = '重邮数图',
-  status = 0,
-  created_by = 31;
+  title = '普通用户发布的相约信息4',
+  content = '普通用户发布的相约信息4，相约时间为2017-05-17 11:30:00， 相约地点为新校门， 状态为相约成功',
+  time = '2017-05-17 11:30:00',
+  location = '新校门',
+  status = 1,
+  created_by = 36;
+
 
 INSERT INTO `invitation` SET 
-  title = '五一仙女山游玩，来组队',
-  content = '五一仙女山游玩，来组队',
-  time = '2017-05-01 12:00:00',
-  location = '重庆仙女山',
-  status = 0,
-  created_by = 31;
+  title = '普通用户发布的相约信息5',
+  content = '普通用户发布的相约信息5，相约时间为2017-05-17 08:30:00， 相约地点为老校门， 状态为相约成功',
+  time = '2017-05-17 08:30:00',
+  location = '老校门',
+  status = 1,
+  created_by = 36;
 
 INSERT INTO `invitation` SET 
-  title = '江北机场拼车回学校',
-  content = '江北机场拼车回学校',
-  time = '2017-05-03 14:30:00',
-  location = '重庆江北机场',
-  status = 0,
-  created_by = 31;
+  title = '普通用户发布的相约信息6',
+  content = '普通用户发布的相约信息6，相约时间为2017-05-17 08:30:00， 相约地点为老校门， 状态为已过期',
+  time = '2017-05-17 08:30:00',
+  location = '老校门',
+  status = 2,
+  created_by = 36;
+
+INSERT INTO `invitation` SET 
+  title = '普通用户发布的相约信息7',
+  content = '普通用户发布的相约信息7，相约时间为2017-05-17 08:30:00， 相约地点为老校门， 状态为已过期',
+  time = '2017-05-17 08:30:00',
+  location = '老校门',
+  status = 2,
+  created_by = 36;
+
+INSERT INTO `invitation` SET 
+  title = '普通用户发布的相约信息8',
+  content = '普通用户发布的相约信息8，相约时间为2017-05-17 08:30:00， 相约地点为老校门， 状态为封禁',
+  time = '2017-05-17 08:30:00',
+  location = '老校门',
+  status = 3,
+  created_by = 36;
+
+
+
 
 
 

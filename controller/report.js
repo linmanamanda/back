@@ -2,15 +2,15 @@ const model = require('./../model/report')
 const verify = require('./../middleware/verify-jwt')
 
 module.exports.init = (router) => {
-  router.get('/reports/users', getUserReports)
-  router.patch('/reports/users', manipulateUserReport)
-  router.delete('/reports/users', deleteUserReport)
-  router.get('/reports/invitations', getInvitationReports)
-  router.patch('/reports/invitations', manipulateInvitationReport)
-  router.delete('/reports/invitations', deleteInvitationReport)
-  router.get('/reports/replys', getReplyReports)
-  router.patch('/reports/replys', manipulateReplyReport)
-  router.delete('/reports/replys', deleteReplyReport)
+  router.get('/reports/users', verify, getUserReports)
+  router.patch('/reports/users', verify, manipulateUserReport)
+  router.delete('/reports/users', verify, deleteUserReport)
+  router.get('/reports/invitations', verify, getInvitationReports)
+  router.patch('/reports/invitations', verify, manipulateInvitationReport)
+  router.delete('/reports/invitations', verify, deleteInvitationReport)
+  router.get('/reports/replys', verify, getReplyReports)
+  router.patch('/reports/replys', verify, manipulateReplyReport)
+  router.delete('/reports/replys', verify, deleteReplyReport)
 }
 
 /**

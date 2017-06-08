@@ -27,9 +27,9 @@ INSERT INTO `report_user` SET
   status = 0;
 
 INSERT INTO `report_user` SET
-  user_id = 36,
+  user_id = 37,
   reason =  '举报普通用户发布无关信息',
-  status = 1;
+  status = 0;
 
 
 # 举报相约信息表
@@ -77,7 +77,7 @@ INSERT INTO `report_reply` SET
   status = 0;
 
 INSERT INTO `report_reply` SET
-  reply_id = 1,
+  reply_id = 2,
   reason =  '评论相约信息中包含广告',
   status = 0;
 
